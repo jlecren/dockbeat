@@ -7,12 +7,12 @@ RUN cd /tmp/PyYAML-3.11 && python setup.py install
 # install glide
 RUN go get github.com/Masterminds/glide
 
-COPY . $GOPATH/src/github.com/ingensi/dockbeat
-RUN cd $GOPATH/src/github.com/ingensi/dockbeat && make && make
+COPY . $GOPATH/src/github.com/jlecren/dockbeat
+RUN cd $GOPATH/src/github.com/jlecren/dockbeat && make && make
 
 RUN mkdir -p /etc/dockbeat/ \
-    && cp $GOPATH/src/github.com/ingensi/dockbeat/dockbeat /usr/local/bin/dockbeat \
-    && cp $GOPATH/src/github.com/ingensi/dockbeat/dockbeat-docker.yml /etc/dockbeat/dockbeat.yml
+    && cp $GOPATH/src/github.com/jlecren/dockbeat/dockbeat /usr/local/bin/dockbeat \
+    && cp $GOPATH/src/github.com/jlecren/dockbeat/dockbeat-docker.yml /etc/dockbeat/dockbeat.yml
 
 WORKDIR /etc/dockbeat
 ENTRYPOINT dockbeat
